@@ -1,0 +1,17 @@
+.ingredient_img_container {
+  margin-top: 0;
+  margin-inline: 0;
+}
+
+.ingredient_price_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.ingredient_name {
+  margin-top: 0;
+  text-wrap-style: pretty;
+  text-align: center;
+}

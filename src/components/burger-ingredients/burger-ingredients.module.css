@@ -13,3 +13,28 @@
   text-align: center;
   list-style-type: none;
 }
+
+.ingredients_container {
+  height: 60vh;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.ingredients_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding-inline: 0;
+  column-gap: 26px;
+  list-style-type: none;
+}
+
+.ingredients_list_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 272px;
+}
