@@ -19,7 +19,7 @@ const getTypes = (ingredients: TIngredient[]): string[] => {
 export const BurgerIngredients = ({
   ingredients,
 }: TBurgerIngredientsProps): React.JSX.Element => {
-  const [typeToDisplay, setTypeToDisplay] = useState(getTypes([...ingredients]));
+  const [typeToDisplay, setTypeToDisplay] = useState(() => getTypes([...ingredients]));
 
   return (
     <section className={styles.burger_ingredients}>

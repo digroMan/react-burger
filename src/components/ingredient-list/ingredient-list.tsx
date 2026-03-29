@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { IngredientItem } from '../ingredient-item/ingredient-item';
 
 import type { TIngredient } from '@/utils/types';
@@ -29,8 +31,8 @@ export const IngredientList = ({
 }: TIngredientListProps): React.JSX.Element => {
   return (
     <>
-      {type.map((t) => (
-        <>
+      {type.map((t, index) => (
+        <Fragment key={index}>
           <h3 className="text text_type_main-medium mb-6">{getNameType(t)}</h3>
           <ul className={`${styles.ingredients_list} mb-15`}>
             {list
@@ -41,7 +43,7 @@ export const IngredientList = ({
                 </li>
               ))}
           </ul>
-        </>
+        </Fragment>
       ))}
     </>
   );
