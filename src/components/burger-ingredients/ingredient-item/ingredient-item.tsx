@@ -1,6 +1,6 @@
 import { Counter } from '@krgaa/react-developer-burger-ui-components';
 
-import { PriceContainer } from '../price-container/price-container';
+import { PriceContainer } from '../../price-container/price-container';
 
 import type { TIngredient } from '@/utils/types';
 import type React from 'react';

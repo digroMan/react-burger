@@ -1,10 +1,9 @@
-import {
-  Button,
-  ConstructorElement,
-  DragIcon,
-} from '@krgaa/react-developer-burger-ui-components';
+import { Button } from '@krgaa/react-developer-burger-ui-components';
+import { useEffect, useState } from 'react';
 
 import { PriceContainer } from '../price-container/price-container';
+import { ConstructorBuns } from './constructor-buns/constructor-buns';
+import { ConstructorItem } from './constructor-item/constructor-item';
 
 import type { TIngredient } from '@utils/types';
 
@@ -17,27 +16,33 @@ type TBurgerConstructorProps = {
 export const BurgerConstructor = ({
   ingredients,
 }: TBurgerConstructorProps): React.JSX.Element => {
+  const [buns, setBuns] = useState<TIngredient[]>([]);
   console.log(ingredients);
+
+  useEffect(() => {
+    setBuns([...ingredients].filter((i) => i.type === 'bun'));
+  }, [ingredients]);
 
   return (
     <section className={styles.burger_constructor}>
-      <ul className={`${styles.list} mb-10`}>
-        {[...ingredients].map((i) => (
-          <li key={i._id} className={`${styles.item} mb-4`}>
-            <DragIcon type="primary" />
-            <ConstructorElement
-              text={i.name}
-              price={i.price}
-              thumbnail={i.image}
-              isLocked={false}
-              type={'bottom'}
-              handleClose={() => {
-                // TODO:
-              }}
-            />
-          </li>
-        ))}
-      </ul>
+      {buns.length > 1 && (
+        <ConstructorBuns buns={buns}>
+          <ul className={`${styles.list} mb-4`}>
+            {[...ingredients].map((i) => (
+              <li key={i._id} className={`${styles.item} mb-4`}>
+                <ConstructorItem
+                  image={i.image}
+                  name={i.name}
+                  price={i.price}
+                  onclick={() => {
+                    // TODO:
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+        </ConstructorBuns>
+      )}
       <div className={styles.price_container}>
         <PriceContainer
           price={576}

@@ -1,7 +1,7 @@
 import { Tab } from '@krgaa/react-developer-burger-ui-components';
 import { useState } from 'react';
 
-import { IngredientList } from '../ingredient-list/ingredient-list';
+import { IngredientList } from './ingredient-list/ingredient-list';
 
 import type { TIngredient } from '@utils/types';
 import type React from 'react';
