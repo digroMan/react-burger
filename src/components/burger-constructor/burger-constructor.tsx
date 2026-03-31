@@ -17,7 +17,6 @@ export const BurgerConstructor = ({
   ingredients,
 }: TBurgerConstructorProps): React.JSX.Element => {
   const [buns, setBuns] = useState<TIngredient[]>([]);
-  console.log(ingredients);
 
   useEffect(() => {
     setBuns([...ingredients].filter((i) => i.type === 'bun'));
