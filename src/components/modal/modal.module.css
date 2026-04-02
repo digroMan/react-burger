@@ -1,0 +1,21 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  position: relative;
+  background-color: #1c1c21;
+  border-radius: 40px;
+}
+
+.hgroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

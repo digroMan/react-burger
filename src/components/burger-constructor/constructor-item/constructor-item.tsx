@@ -24,7 +24,6 @@ export const ConstructorItem = ({
         price={price}
         thumbnail={image}
         isLocked={false}
-        type={'bottom'}
         handleClose={onclick}
       />
     </>
