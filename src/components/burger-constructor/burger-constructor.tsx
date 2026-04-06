@@ -1,6 +1,8 @@
 import { Button } from '@krgaa/react-developer-burger-ui-components';
 import { useEffect, useState } from 'react';
 
+import { DetailsOrder } from '../modal/details-order/details-order';
+import { Modal } from '../modal/modal';
 import { PriceContainer } from '../price-container/price-container';
 import { ConstructorBuns } from './constructor-buns/constructor-buns';
 import { ConstructorItem } from './constructor-item/constructor-item';
@@ -17,6 +19,7 @@ export const BurgerConstructor = ({
   ingredients,
 }: TBurgerConstructorProps): React.JSX.Element => {
   const [buns, setBuns] = useState<TIngredient[]>([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setBuns([...ingredients].filter((i) => i.type === 'bun'));
@@ -51,14 +54,17 @@ export const BurgerConstructor = ({
         />
         <Button
           htmlType="button"
-          onClick={() => {
-            // TODO:
-          }}
+          onClick={() => setVisible(true)}
           size="large"
           type="primary"
         >
           Оформить заказ
         </Button>
+        {visible && (
+          <Modal onClose={() => setVisible(false)}>
+            <DetailsOrder />
+          </Modal>
+        )}
       </div>
     </section>
   );
