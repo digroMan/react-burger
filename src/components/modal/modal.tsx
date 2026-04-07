@@ -1,4 +1,3 @@
-import { useClose } from '@/hooks/use-close';
 import { CloseIcon } from '@krgaa/react-developer-burger-ui-components';
 import { createPortal } from 'react-dom';
 
@@ -18,22 +17,16 @@ type TModalProps = {
 };
 
 export const Modal = ({ title, children, onClose }: TModalProps): React.JSX.Element => {
-  const setClose = useClose(onClose);
-
   return createPortal(
     <div className={styles.wrapper}>
       <section className={`${styles.section} p-10`}>
         <hgroup className={styles.hgroup}>
           {title && <h3 className="text text_type_main-large">{title}</h3>}
-          <CloseIcon
-            className={styles.close}
-            type="primary"
-            onClick={() => setClose(false)}
-          />
+          <CloseIcon className={styles.close} type="primary" onClick={onClose} />
         </hgroup>
         {children}
       </section>
-      <ModalOverlay handleClose={() => setClose(false)} />
+      <ModalOverlay handleClose={onClose} />
     </div>,
     modal
   );

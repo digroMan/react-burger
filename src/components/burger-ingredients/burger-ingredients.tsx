@@ -1,6 +1,9 @@
+import { useModal } from '@/hooks/use-modal';
 import { Tab } from '@krgaa/react-developer-burger-ui-components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
+import { IngredientDetails } from '../modal/ingredient-details/ingredient-details';
+import { Modal } from '../modal/modal';
 import { IngredientList } from './ingredient-list/ingredient-list';
 
 import type { TIngredient } from '@utils/types';
@@ -20,6 +23,16 @@ export const BurgerIngredients = ({
   ingredients,
 }: TBurgerIngredientsProps): React.JSX.Element => {
   const [typeToDisplay, setTypeToDisplay] = useState(() => getTypes([...ingredients]));
+  const [selectedIngredient, setSelectedIngredient] = useState<TIngredient>();
+  const { closeModal, openModal, isModalOpen } = useModal();
+
+  const handleShowModal = useCallback(
+    (id: string) => {
+      setSelectedIngredient(ingredients.find((i) => i._id === id));
+      openModal();
+    },
+    [ingredients, openModal]
+  );
 
   return (
     <section className={styles.burger_ingredients}>
@@ -49,8 +62,17 @@ export const BurgerIngredients = ({
         </ul>
       </nav>
       <div className={`${styles.ingredients_container} custom-scroll`}>
-        <IngredientList list={[...ingredients]} type={typeToDisplay} />
+        <IngredientList
+          list={[...ingredients]}
+          type={typeToDisplay}
+          showModal={handleShowModal}
+        />
       </div>
+      {isModalOpen && selectedIngredient && (
+        <Modal title="Детали ингредиента" onClose={closeModal}>
+          <IngredientDetails ingredient={selectedIngredient} />
+        </Modal>
+      )}
     </section>
   );
 };

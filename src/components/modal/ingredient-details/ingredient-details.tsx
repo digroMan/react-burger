@@ -1,20 +1,16 @@
 import type { TIngredient } from '@/utils/types';
 
-import styles from './details-ingredient.module.css';
+import styles from './ingredient-details.module.css';
 
-export const DetailsIngredient = ({
+export const IngredientDetails = ({
   ingredient,
 }: {
   ingredient: TIngredient;
 }): React.JSX.Element => {
   return (
     <>
-      <figure className="mb-8">
-        <img
-          className="mb-4"
-          src={ingredient.image_large}
-          alt="Изображение ингредиента"
-        />
+      <figure className={`${styles.figure} mb-8`}>
+        <img className="mb-4" src={ingredient.image_large} alt={ingredient.name} />
         <figcaption className={`${styles.figcaption} text text_type_main-medium`}>
           {ingredient.name}
         </figcaption>

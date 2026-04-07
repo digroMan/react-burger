@@ -15,7 +15,7 @@ export const useGetIngredients = (): [TIngredient[], boolean] => {
         setIngredients(res.data.data);
         setLoader(!isLoading);
       })
-      .catch((error) => console.log(error));
+      .catch(console.error);
   }, []);
 
   return [ingredients, isLoading];

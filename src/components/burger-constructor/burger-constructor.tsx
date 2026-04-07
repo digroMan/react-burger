@@ -1,8 +1,9 @@
+import { useModal } from '@/hooks/use-modal';
+import { useSeparationIngredients } from '@/hooks/use-separation-ingredients';
 import { Button } from '@krgaa/react-developer-burger-ui-components';
-import { useEffect, useState } from 'react';
 
-import { DetailsOrder } from '../modal/details-order/details-order';
 import { Modal } from '../modal/modal';
+import { OrderDetails } from '../modal/order-details/order-details';
 import { PriceContainer } from '../price-container/price-container';
 import { ConstructorBuns } from './constructor-buns/constructor-buns';
 import { ConstructorItem } from './constructor-item/constructor-item';
@@ -18,19 +19,15 @@ type TBurgerConstructorProps = {
 export const BurgerConstructor = ({
   ingredients,
 }: TBurgerConstructorProps): React.JSX.Element => {
-  const [buns, setBuns] = useState<TIngredient[]>([]);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setBuns([...ingredients].filter((i) => i.type === 'bun'));
-  }, [ingredients]);
+  const { closeModal, isModalOpen, openModal } = useModal();
+  const [buns, middleIngredients] = useSeparationIngredients(ingredients);
 
   return (
     <section className={styles.burger_constructor}>
       {buns.length > 1 && (
         <ConstructorBuns buns={buns}>
           <ul className={`${styles.list} mb-4`}>
-            {[...ingredients].map((i) => (
+            {middleIngredients.map((i) => (
               <li key={i._id} className={`${styles.item} mb-4`}>
                 <ConstructorItem
                   image={i.image}
@@ -52,17 +49,12 @@ export const BurgerConstructor = ({
           classNumber="text_type_digits-medium"
           classIcon={`${styles.price_icon}`}
         />
-        <Button
-          htmlType="button"
-          onClick={() => setVisible(true)}
-          size="large"
-          type="primary"
-        >
+        <Button htmlType="button" onClick={openModal} size="large" type="primary">
           Оформить заказ
         </Button>
-        {visible && (
-          <Modal onClose={() => setVisible(false)}>
-            <DetailsOrder />
+        {isModalOpen && (
+          <Modal onClose={closeModal}>
+            <OrderDetails />
           </Modal>
         )}
       </div>

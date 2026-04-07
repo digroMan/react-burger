@@ -14,9 +14,10 @@ const getConstructorItemProps = ({
   position,
   extraClass,
 }: TConstructorItemArguments): TConstructorItemProps => {
+  const positionText = position === 'top' ? '(верх)' : '(низ)';
   return {
     type: position,
-    text: ingredient.name,
+    text: `${ingredient.name} ${positionText}`,
     price: ingredient.price,
     isLocked: true,
     thumbnail: ingredient.image,
