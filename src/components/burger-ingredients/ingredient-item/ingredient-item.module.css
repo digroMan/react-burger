@@ -1,0 +1,22 @@
+.img_container {
+  margin-top: 0;
+  margin-inline: 0;
+}
+
+.price_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.price_icon {
+  width: 24px;
+  height: auto;
+}
+
+.name {
+  margin-top: 0;
+  text-wrap-style: pretty;
+  text-align: center;
+}

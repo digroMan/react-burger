@@ -2,6 +2,41 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  padding-bottom: 20px;
   color: var(--text-primary-color);
+}
+
+.list {
+  height: 42vh;
+  max-height: 470px;
+  margin-top: 0;
+  overflow: auto;
+  padding-inline: 0;
+  list-style-type: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.price_container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.price_wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.price_icon {
+  width: 36px;
+  height: auto;
 }

@@ -13,3 +13,9 @@
   text-align: center;
   list-style-type: none;
 }
+
+.ingredients_container {
+  height: 60vh;
+  max-height: 580px;
+  overflow: auto;
+}
